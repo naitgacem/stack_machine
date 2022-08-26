@@ -49,7 +49,9 @@ public class stacker {
                 }
             }
         }
-        System.out.println(stack.pop());
+        if (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
         System.out.println("Program terminated");
         sc.close();
     }
