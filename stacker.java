@@ -54,6 +54,7 @@ public class stacker {
         }
         System.out.println("Program terminated");
         sc.close();
+
     }
 
 }
