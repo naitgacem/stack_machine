@@ -5,7 +5,7 @@ import java.util.Scanner;
 //import print in java
 import java.lang.System;
 
-public class stacker {
+public class Stacker {
     // main method
     public static void main(String[] args) {
         // create a stack
@@ -16,6 +16,7 @@ public class stacker {
         System.out.println("Program Started");
         String raw_instruction;
         String[] instruction_array;
+
         while (true) {
             System.out.print(">  ");
             raw_instruction = sc.nextLine();
@@ -30,7 +31,8 @@ public class stacker {
             } else {
                 parser(stack, instruction_array[0]);
             }
-        } // end wireless loop
+        } // end endless loop
+          // how ironic xDDDDD
 
         if (!stack.isEmpty()) {
             System.out.println(stack.pop());
@@ -137,7 +139,7 @@ public class stacker {
 
     }
 
-    private static void display_help(void){
+    private static void display_help() {
         System.out.println("push <number> : push a number to the stack");
         System.out.println("add : add the top two numbers on the stack");
         System.out.println("sub : subtract the top two numbers on the stack");
