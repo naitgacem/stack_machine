@@ -1,9 +1,10 @@
 
 import java.util.Stack;
-import java.util.Arrays;
 import java.util.Scanner;
 //import print in java
 import java.lang.System;
+
+//import Arithmetic;
 
 public class Stacker {
     // main method
@@ -13,6 +14,9 @@ public class Stacker {
 
         // getting an insttruction
         Scanner sc = new Scanner(System.in);
+
+        // Arithmetic.parse();
+
         System.out.println("Program Started");
         String raw_instruction;
         String[] instruction_array;
@@ -23,7 +27,6 @@ public class Stacker {
             instruction_array = raw_instruction.split("\\s+");
             // push the instruction to the stack
             if (instruction_array[0].equals("halt")) {
-
                 break;
             }
             if (instruction_array[0].contains("push")) {
@@ -34,85 +37,46 @@ public class Stacker {
         } // end endless loop
           // how ironic xDDDDD
 
-        if (!stack.isEmpty()) {
-            System.out.println(stack.pop());
-        }
         System.out.println("Program terminated");
         sc.close();
 
     }// end main
 
     private static void parser(Stack<String> st, String instruction) {
-        Integer op1 = pop_top_element(st);
-        Integer op2 = pop_top_element(st);
+        Integer op1 = 0;// pop_top_element(st);
+        Integer op2 = 0; // pop_top_element(st);
 
         switch (instruction) {
             case "add":
-                st.push(Integer.toString(op1 + op2));
-                break;
             case "sub":
-                st.push(Integer.toString(op1 - op2));
-                break;
             case "mul":
-                st.push(Integer.toString(op1 * op2));
-                break;
             case "div":
-                st.push(Integer.toString(op2 / op1));
-                break;
             case "mod":
-                st.push(Integer.toString(op1 % op2));
-                break;
             case "neg":
-                st.push(Integer.toString(op2));
-                st.push(Integer.toString(-op1));
+                Arithmetic.parse(st, instruction);
                 break;
+
             case "swap":
-                st.push(Integer.toString(op1));
-                st.push(Integer.toString(op2));
-                break;
-            case "dup":
-                st.push(Integer.toString(op1));
-                st.push(Integer.toString(op1));
-                break;
-            case "drop":
-                st.push(Integer.toString(op2));
-                break;
-            case "over":
-                restore_stack(st, op1, op2);
-                st.push(Integer.toString(op2));
-                break;
             case "rot":
-                int op3 = pop_top_element(st);
-                st.push(Integer.toString(op1));
-                st.push(Integer.toString(op2));
-                st.push(Integer.toString(op3));
+            case "dup":
+            case "drop":
+            case "over":
+                StackManipulation.parse(st, instruction);
                 break;
-            case "print":
-                restore_stack(st, op1, op2);
-                System.out.println(op1);
-                break;
+
             case "printall":
-                restore_stack(st, op1, op2);
-                System.out.println(Arrays.toString(st.toArray()));
-                break;
             case "clear":
-                st.clear();
-                break;
             case "size":
-                restore_stack(st, op1, op2);
-                System.out.println(st.size());
-                break;
             case "help":
-                restore_stack(st, op1, op2);
-                display_help();
+                StackInfo.parse(st, instruction);
                 break;
+
             case "exit":
                 System.out.println("Program terminated");
                 System.exit(0);
                 break;
 
             default:
-                restore_stack(st, op1, op2);
                 System.out.println("Invalid instruction");
                 break;
 
@@ -123,7 +87,7 @@ public class Stacker {
 
     }
 
-    private static Integer pop_top_element(Stack<String> st) {
+    public static Integer pop_top_element(Stack<String> st) {
         if (!st.isEmpty()) {
             return Integer.parseInt(st.pop());
         } else {
@@ -131,32 +95,4 @@ public class Stacker {
         }
     }
 
-    private static void restore_stack(Stack<String> st, Integer op1, Integer op2) {
-        if (op2 != null)
-            st.push(Integer.toString(op2));
-        if (op1 != null)
-            st.push(Integer.toString(op1));
-
-    }
-
-    private static void display_help() {
-        System.out.println("push <number> : push a number to the stack");
-        System.out.println("add : add the top two numbers on the stack");
-        System.out.println("sub : subtract the top two numbers on the stack");
-        System.out.println("mul : multiply the top two numbers on the stack");
-        System.out.println("div : divide the top two numbers on the stack");
-        System.out.println("mod : get the remainder of the top two numbers on the stack");
-        System.out.println("neg : negate the top number on the stack");
-        System.out.println("swap : swap the top two numbers on the stack");
-        System.out.println("dup : duplicate the top number on the stack");
-        System.out.println("drop : drop the top number on the stack");
-        System.out.println("over : copy the second number on the stack to the top");
-        System.out.println("rot : rotate the top three numbers on the stack");
-        System.out.println("print : print the top number on the stack");
-        System.out.println("printall : print all the numbers on the stack");
-        System.out.println("clear : clear the stack");
-        System.out.println("size : print the size of the stack");
-        System.out.println("help : print this help message");
-        System.out.println("exit | halt : exit the program");
-    }
 }
