@@ -15,8 +15,6 @@ public class Stacker {
         // getting an insttruction
         Scanner sc = new Scanner(System.in);
 
-        // Arithmetic.parse();
-
         System.out.println("Program Started");
         String raw_instruction;
         String[] instruction_array;
@@ -43,9 +41,6 @@ public class Stacker {
     }// end main
 
     private static void parser(Stack<String> st, String instruction) {
-        Integer op1 = 0;// pop_top_element(st);
-        Integer op2 = 0; // pop_top_element(st);
-
         switch (instruction) {
             case "add":
             case "sub":
