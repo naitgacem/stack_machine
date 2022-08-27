@@ -48,12 +48,40 @@ public class stacker {
                     System.out.println("> " + stack.peek());
                 }
             }
-        }
+        } // end wireless loop
+
         if (!stack.isEmpty()) {
             System.out.println(stack.pop());
         }
         System.out.println("Program terminated");
         sc.close();
+
+    }// end main
+
+    private void parser(Stack<String> st, String instruction) {
+        int op1, op2;
+        op1 = Integer.parseInt(st.pop());
+        op2 = Integer.parseInt(st.pop());
+        if (instruction.equals("add")) {
+            st.push(Integer.toString(op1 + op2));
+            System.out.println("> " + st.peek());
+
+        } else if (instruction.equals("sub")) {
+            st.push(Integer.toString(op1 - op2));
+            System.out.println("> " + st.peek());
+
+        } else if (instruction.equals("mul")) {
+            st.push(Integer.toString(op1 * op2));
+            System.out.println("> " + st.peek());
+
+        } else if (instruction.equals("div")) {
+            st.push(Integer.toString(op1 / op2));
+            System.out.println("> " + st.peek());
+
+        } else if (instruction.equals("mod")) {
+            st.push(Integer.toString(op1 % op2));
+            System.out.println("> " + st.peek());
+        }
 
     }
 
