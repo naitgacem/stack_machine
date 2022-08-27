@@ -15,7 +15,6 @@ public class stacker {
         System.out.println("Program Started");
         String raw_instruction;
         String[] instruction_array;
-        int op1, op2;
         while (true) {
             System.out.print(">  ");
             raw_instruction = sc.nextLine();
@@ -44,26 +43,26 @@ public class stacker {
         int op1, op2;
         op1 = Integer.parseInt(st.pop());
         op2 = Integer.parseInt(st.pop());
-        if (instruction.equals("add")) {
-            st.push(Integer.toString(op1 + op2));
-            System.out.println("> " + st.peek());
 
-        } else if (instruction.equals("sub")) {
-            st.push(Integer.toString(op1 - op2));
-            System.out.println("> " + st.peek());
-
-        } else if (instruction.equals("mul")) {
-            st.push(Integer.toString(op1 * op2));
-            System.out.println("> " + st.peek());
-
-        } else if (instruction.equals("div")) {
-            st.push(Integer.toString(op1 / op2));
-            System.out.println("> " + st.peek());
-
-        } else if (instruction.equals("mod")) {
-            st.push(Integer.toString(op1 % op2));
-            System.out.println("> " + st.peek());
+        switch (instruction) {
+            case "add":
+                st.push(Integer.toString(op1 + op2));
+                break;
+            case "sub":
+                st.push(Integer.toString(op1 - op2));
+                break;
+            case "mul":
+                st.push(Integer.toString(op1 * op2));
+                break;
+            case "div":
+                st.push(Integer.toString(op2 / op1));
+                break;
+            case "mod":
+                st.push(Integer.toString(op1 % op2));
+                break;
         }
+
+        System.out.println("> " + st.peek());
 
     }
 
