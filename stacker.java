@@ -28,25 +28,7 @@ public class stacker {
             if (instruction_array[0].contains("push")) {
                 stack.push(instruction_array[1]);
             } else {
-                op1 = Integer.parseInt(stack.pop());
-                op2 = Integer.parseInt(stack.pop());
-
-                if (instruction_array[0].equals("add")) {
-                    stack.push(Integer.toString(op1 + op2));
-                    System.out.println("> " + stack.peek());
-                } else if (instruction_array[0].equals("sub")) {
-                    stack.push(Integer.toString(op1 - op2));
-                    System.out.println("> " + stack.peek());
-                } else if (instruction_array[0].equals("mul")) {
-                    stack.push(Integer.toString(op1 * op2));
-                    System.out.println("> " + stack.peek());
-                } else if (instruction_array[0].equals("div")) {
-                    stack.push(Integer.toString(op1 / op2));
-                    System.out.println("> " + stack.peek());
-                } else if (instruction_array[0].equals("mod")) {
-                    stack.push(Integer.toString(op1 % op2));
-                    System.out.println("> " + stack.peek());
-                }
+                parser(stack, instruction_array[0]);
             }
         } // end wireless loop
 
@@ -58,7 +40,7 @@ public class stacker {
 
     }// end main
 
-    private void parser(Stack<String> st, String instruction) {
+    private static void parser(Stack<String> st, String instruction) {
         int op1, op2;
         op1 = Integer.parseInt(st.pop());
         op2 = Integer.parseInt(st.pop());
